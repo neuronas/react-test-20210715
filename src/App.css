@@ -1,15 +1,33 @@
 .container {
   text-align: center;
   margin-top: 6rem;
+  width: 100%;
 }
 
+.main {
+  width: 800px;
+  height: 400px;
+  background: lightblue;
+  margin: auto;
+  padding-top: 100px;
+}
 
 .board {
-  font-size: 2rem;
+  /*background: lightcyan;*/
+  margin: auto;
+  position: relative;
+  width: 300px;
+  font-size: 1rem;
 }
 
-
-
+.node {
+  background: lightcyan;
+  margin: 5px;
+  position: relative;
+  float: left;
+  height: 20px;
+  width: 20px;
+}
 
 
 
