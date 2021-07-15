@@ -1,6 +1,27 @@
-.App {
+.container {
   text-align: center;
+  margin-top: 6rem;
 }
+
+
+.board {
+  font-size: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .App-logo {
   height: 40vmin;
@@ -36,3 +57,5 @@
     transform: rotate(360deg);
   }
 }
+
+
