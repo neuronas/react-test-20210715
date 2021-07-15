@@ -3,27 +3,31 @@ import React from 'react'
 
 
 const Board = ({locations, size, sendNodes}) => {
-	let width = Array.from(Array(size.width).keys())
-	let height = Array.from(Array(size.height).keys())
 
-	let onClick = (e) => {
+	const matrix = Array(size.height).fill(0).map(() => Array(size.width).fill(0));
+
+	let onClick = (e, h, v) => {
+
+		let node = matrix[h][v]
+		matrix[h][v] = node == 1 ? 0 : 1
+
 		let elem = e.target
 		// toggle
 		elem.innerHTML = elem.innerText === "-" ? 'o' : '-'
 	}
 
 	const doSubmitt = () => {
-		sendNodes([])
+		sendNodes(matrix)
 	}
 
 	return (
 		<div className="board">
 			{
-				height.map((k,v) =>
-					<span key={k}> 	
+				matrix.map((vv, kv) =>
+					<span key={kv}> 	
 						{
-							width.map((k,v) => (
-									<div className="node" key={k} onClick={onClick}>-</div>
+							matrix[kv].map((vh, kh) => (
+									<div className="node" key={kh} onClick={(e) => onClick(e, kv, kh)}>-</div>
 								)
 							)
 						}
