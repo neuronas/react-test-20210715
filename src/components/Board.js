@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-const Board = ({locations, size}) => {
+const Board = ({locations, size, sendNodes}) => {
 	let width = Array.from(Array(size.width).keys())
 	let height = Array.from(Array(size.height).keys())
 
@@ -10,6 +10,10 @@ const Board = ({locations, size}) => {
 		let elem = e.target
 		// toggle
 		elem.innerHTML = elem.innerText === "-" ? 'o' : '-'
+	}
+
+	const doSubmitt = () => {
+		sendNodes([])
 	}
 
 	return (
@@ -27,6 +31,7 @@ const Board = ({locations, size}) => {
 					</span> 
 				)
 			}
+			<button className="btn-submit" onClick={doSubmitt}>SUBMIT</button>
 		</div>		
 	)
 }
