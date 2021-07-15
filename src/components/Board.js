@@ -2,9 +2,9 @@ import React from 'react'
 
 
 
-const Board = ({locations}) => {
-
-	let array = Array.from(Array(10).keys())
+const Board = ({locations, size}) => {
+	let width = Array.from(Array(size.width).keys())
+	let height = Array.from(Array(size.height).keys())
 
 	let onClick = (e) => {
 		let elem = e.target
@@ -15,10 +15,10 @@ const Board = ({locations}) => {
 	return (
 		<div className="board">
 			{
-				array.map((k,v) =>
+				height.map((k,v) =>
 					<span key={k}> 	
 						{
-							array.map((k,v) => (
+							width.map((k,v) => (
 									<div className="node" key={k} onClick={onClick}>-</div>
 								)
 							)

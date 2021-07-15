@@ -5,11 +5,12 @@
 }
 
 .main {
-  width: 800px;
+  width: 50%;
   height: 400px;
   background: lightblue;
   margin: auto;
   padding-top: 100px;
+  /*padding: 10px;*/
 }
 
 .board {
