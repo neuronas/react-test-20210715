@@ -5,9 +5,11 @@ import './App.css';
 function App() {
 
   const [size, setSize] = useState(null) 
+  const [clusters, setClusters] = useState(null)
+
   useEffect(() => {
     // set data when endpoint send response
-    setSize({height: 5, width: 10})
+    setSize({height: 10, width: 10})
   }, []) 
 
   const doPost = (data) => {
@@ -16,10 +18,18 @@ function App() {
         const result = getClusters(data)
         console.log("POST", result)
         resolve(result)
-      }, 1000)
+      }, 500)
     })
   }
 
+  const sendNodes = (matrix) => {
+
+    doPost(matrix).then((clusters) => {
+      console.log("RES", clusters)
+      setClusters(clusters)
+    })
+
+  }
 
   const getClusters = (matrix) => {
 
@@ -84,7 +94,7 @@ function App() {
       <div className="main">
           {
             size &&
-            <Board size={size} sendNodes={doPost} />
+            <Board clusters={clusters} size={size} sendNodes={sendNodes} />
           }
       </div>
     </div>

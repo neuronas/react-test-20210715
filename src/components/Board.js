@@ -1,15 +1,37 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 
 
+const Board = ({clusters, size, sendNodes}) => {
 
-const Board = ({locations, size, sendNodes}) => {
+	const [flag, setFlag] = useState(null)
+	const [matrix, setMatrix] = useState(Array(size.height).fill(0).map(() => Array(size.width).fill(0)))
 
-	const matrix = Array(size.height).fill(0).map(() => Array(size.width).fill(0));
+	useEffect(() => {
+		if (clusters) {
+			drawClusters(clusters)
+		}
+	}, [clusters])
+
+	const drawClusters = (clusters) => {
+		let drawMatrix = matrix
+
+		for (let i=0; i<clusters.length; i++) {
+			for (let j=0; j<clusters[i].length; j++) {
+				const node = clusters[i][j]
+				drawMatrix[node[1]][node[0]] = i+1
+			}
+		}
+		setMatrix(drawMatrix)
+		setFlag(true)
+	}
 
 	let onClick = (e, h, v) => {
+		let tempMatrix = matrix
 
-		let node = matrix[h][v]
-		matrix[h][v] = node == 1 ? 0 : 1
+		let node = tempMatrix[h][v]
+		tempMatrix[h][v] = node == 1 ? 0 : 1
+
+		setMatrix(tempMatrix)
 
 		let elem = e.target
 		// toggle
@@ -17,19 +39,17 @@ const Board = ({locations, size, sendNodes}) => {
 	}
 
 	const doSubmitt = () => {
-		sendNodes(matrix).then((a) => {
-			console.log("RES", a)
-		})
+		sendNodes(matrix)
 	}
 
 	return (
 		<div className="board">
 			{
-				matrix.map((vv, kv) =>
-					<span key={kv}> 	
+				matrix.map((v, vKey) =>
+					<span key={vKey}> 	
 						{
-							matrix[kv].map((vh, kh) => (
-									<div className="node" key={kh} onClick={(e) => onClick(e, kv, kh)}>-</div>
+							matrix[vKey].map((hValue, hKey) => (
+									<div className="node" key={hKey} onClick={(e) => onClick(e, vKey, hKey)}>{`${!flag ? '-' : (hValue ? hValue :' ')}`}</div>
 								)
 							)
 						}
