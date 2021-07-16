@@ -17,7 +17,9 @@ const Board = ({locations, size, sendNodes}) => {
 	}
 
 	const doSubmitt = () => {
-		sendNodes(matrix)
+		sendNodes(matrix).then((a) => {
+			console.log("RES", a)
+		})
 	}
 
 	return (
