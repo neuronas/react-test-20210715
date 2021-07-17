@@ -43,24 +43,28 @@ const Board = ({clusters, size, sendNodes}) => {
 	}
 
 	return (
-		<div className="board">
-			{
-				matrix.map((v, vKey) =>
-					<span key={vKey}> 	
-						{
-							matrix[vKey].map((hValue, hKey) => (
-									<div className="node" key={hKey} onClick={(e) => onClick(e, vKey, hKey)}>{`${!flag ? '-' : (hValue ? hValue :' ')}`}</div>
+		<div>
+			<div className="main">
+				<div className="board">
+				{
+					matrix.map((v, vKey) =>
+						<div key={vKey}> 	
+							{
+								matrix[vKey].map((hValue, hKey) => (
+										<div className="node" key={hKey} onClick={(e) => onClick(e, vKey, hKey)}>{`${!flag ? '-' : (hValue ? hValue :' ')}`}</div>
+									)
 								)
-							)
-						}
-						<br />
-					</span> 
-				)
-			}
-			<button className="btn-submit" onClick={doSubmitt}>SUBMIT</button>
-		</div>		
+							}
+						</div> 
+					)
+				}
+				</div>
+			</div>
+			<div className="div-btn">
+				<button className="btn-submit" onClick={doSubmitt}>SUBMIT</button>
+			</div>
+		</div>
 	)
 }
-
 
 export default Board

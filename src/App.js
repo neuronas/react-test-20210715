@@ -91,12 +91,10 @@ function App() {
 
   return (
     <div className="container">
-      <div className="main">
-          {
-            size &&
-            <Board clusters={clusters} size={size} sendNodes={sendNodes} />
-          }
-      </div>
+      {
+        size &&
+        <Board clusters={clusters} size={size} sendNodes={sendNodes} />
+      }
     </div>
   );
 }
