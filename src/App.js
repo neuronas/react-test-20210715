@@ -1,16 +1,12 @@
 import {useState, useEffect} from 'react'
 import Board from './components/Board'
+import Controls from './components/Controls'
 import './App.css';
 
 function App() {
 
-  const [size, setSize] = useState(null) 
+  const [size, setSize] = useState({height: 8, width: 10}) 
   const [clusters, setClusters] = useState(null)
-
-  useEffect(() => {
-    // set data when endpoint send response
-    setSize({height: 10, width: 10})
-  }, []) 
 
   const doPost = (data) => {
     return new Promise((resolve, reject) => {
@@ -88,9 +84,9 @@ function App() {
   }
 
 
-
   return (
     <div className="container">
+      <Controls size={size} setSize={setSize} />
       {
         size &&
         <Board clusters={clusters} size={size} sendNodes={sendNodes} />
