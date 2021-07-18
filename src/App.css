@@ -11,11 +11,17 @@
 
 .board {
   display: inherit;
+  flex-direction: column;
+  align-items: flex-start;
   background: lightblue;
   margin: auto;
   padding: 10px;
   font-size: 1rem;
   overflow: auto;
+}
+
+.row {
+  display: inherit;
 }
 
 .node {

@@ -1,10 +1,9 @@
 import {useEffect, useState} from 'react'
-
+import Grid from './Grid'
 
 const Board = ({clusters, size, sendNodes}) => {
 
-	const [showClusters, setShowClusters] = useState(null)
-	const [reRender, setReRender] = useState(false)
+	const [showClusters, setShowClusters] = useState(false)
 	const [matrix, setMatrix] = useState(Array(size.height).fill(0).map(() => Array(size.width).fill(0)))
 
 	useEffect(() => {
@@ -30,19 +29,14 @@ const Board = ({clusters, size, sendNodes}) => {
 		setShowClusters(true)
 	}
 
-	let onClick = (e, h, v) => {
+	let handleClick = (e, h, v) => {
 		if (showClusters) return
 
-		let tempMatrix = matrix
-
-		let node = tempMatrix[h][v]
+		let tempMatrix = [...matrix]
+		let node = matrix[h][v]
 		tempMatrix[h][v] = node == 1 ? 0 : 1
-
 		setMatrix(tempMatrix)
-
 		let elem = e.target
-		// toggle
-		elem.innerHTML = elem.innerText === "-" ? 'o' : '-'
 	}
 
 	const doSubmitt = () => {
@@ -51,31 +45,15 @@ const Board = ({clusters, size, sendNodes}) => {
 
 	const doReset = () => {
 		setMatrix(Array(size.height).fill(0).map(() => Array(size.width).fill(0)))
-		setReRender(true)	
 		setShowClusters(false)
-
-		setTimeout(() => {
-			setReRender(false)
-		}, 50)	
 	}
 
 	return (
 		<div>
 			<div className="main">
-				<div className="board">
-				{ !reRender &&
-					matrix.map((v, vKey) =>
-						<div key={vKey}> 	
-							{
-								matrix[vKey].map((hValue, hKey) => (
-										<div className="node" key={hKey} onClick={(e) => onClick(e, vKey, hKey)}>{`${!showClusters ? '-' : (hValue ? hValue :' ')}`}</div>
-									)
-								)
-							}
-						</div> 
-					)
+				{
+					<Grid matrix={matrix} onClick={handleClick} showClusters={showClusters} />
 				}
-				</div>
 			</div>
 			<div>
 				<button onClick={doSubmitt}>Submit</button>

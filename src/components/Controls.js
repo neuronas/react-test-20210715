@@ -1,13 +1,8 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 
 const Controls = ({size, setSize}) => {
 
 	const [values, setValue] = useState({height: size.height, width: size.width})
-
-  useEffect(() => {
-    // set data when endpoint send response
-    setSize({height: 8, width: 10})
-  }, []) 
 
 	const doSet = (size) => {
 		setSize(values)
@@ -31,7 +26,5 @@ const Controls = ({size, setSize}) => {
 			</div>
 	)
 }
-
-
 
 export default Controls

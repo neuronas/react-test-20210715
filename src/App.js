@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
 
-  const [size, setSize] = useState({height: 8, width: 10}) 
+  const [size, setSize] = useState({height: 10, width: 10}) 
   const [clusters, setClusters] = useState(null)
 
   const doPost = (data) => {
@@ -14,7 +14,7 @@ function App() {
         const result = getClusters(data)
         console.log("POST", result)
         resolve(result)
-      }, 500)
+      }, 10)
     })
   }
 
