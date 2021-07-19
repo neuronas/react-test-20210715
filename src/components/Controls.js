@@ -19,9 +19,9 @@ const Controls = ({size, setSize}) => {
 	return (
 			<div>
 				<label htmlFor="height">height</label>
-				<input type="number" name="height" value={values.height} onChange={handleChange}/>
+				<input type="number" id="height" value={values.height} onChange={handleChange}/>
 				<label htmlFor="width">width</label>
-				<input type="number" name="width" value={values.width} onChange={handleChange}/>
+				<input type="number" id="width" value={values.width} onChange={handleChange}/>
 				<button onClick={doSet}>Set</button>
 			</div>
 	)
