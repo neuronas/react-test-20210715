@@ -39,7 +39,7 @@ const Board = ({clusters, size, sendNodes}) => {
 		let elem = e.target
 	}
 
-	const doSubmitt = () => {
+	const doSubmit = () => {
 		sendNodes(matrix)
 	}
 
@@ -56,7 +56,7 @@ const Board = ({clusters, size, sendNodes}) => {
 				}
 			</div>
 			<div>
-				<button onClick={doSubmitt}>Submit</button>
+				<button onClick={doSubmit}>Submit</button>
 				<button onClick={doReset}>Restart</button>
 			</div>
 			
